@@ -67,11 +67,14 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
   min-height: 100vh;
+  background-color: #5C5C5C; /* Fondo gris oscuro base */
+  display: block;
 }
+
 
 h1 {
   font-size: 3.2em;
@@ -190,3 +193,12 @@ button:focus-visible {
     @apply bg-background text-foreground;
   }
 }
+/* ==== Formas diagonales del login ==== */
+.clip-left {
+  clip-path: polygon(0 0, 100% 0, 70% 100%, 0% 100%);
+}
+
+.clip-right {
+  clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+}
+

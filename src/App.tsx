@@ -1,12 +1,16 @@
-import { Button } from "@/components/ui/button"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import RecuperarCuenta from "./pages/RecuperarCuenta";
 
 function App() {
     return (
-        <div className="p-10">
-            <Button>Hola Shadcn</Button>
-        </div>
-    )
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/recuperar-cuenta" element={<RecuperarCuenta />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
-export default App
-
+export default App;
