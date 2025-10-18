@@ -1,4 +1,3 @@
-
 @import "tw-animate-css";
 
 @plugin "tailwindcss-animate";
@@ -71,7 +70,8 @@ body {
   width: 100%;
   height: 100vh;
   min-height: 100vh;
-  background-color: #5C5C5C; /* Fondo gris oscuro base */
+  /* 🚨 CORRECCIÓN CLAVE: CAMBIAR A BLANCO PURO 🚨 */
+  background-color: #ffffff;
   display: block;
 }
 
@@ -194,3 +194,8 @@ button:focus-visible {
   }
 }
 
+/* Añadir a tu archivo CSS global (index.css o App.css) */
+.grid-cols-tickets-lg {
+  /* Define el ancho de tus 9 columnas (Id, Tipo, Usuario, Empresa, Area, Sucursal, Estado, Fecha, Mail) */
+  grid-template-columns: 0.2fr 1.5fr 1fr 0.8fr 0.5fr 0.8fr 0.6fr 1fr 0.3fr;
+}
