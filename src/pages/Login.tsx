@@ -13,6 +13,10 @@ export default function Login() {
         navigate("/recuperar-cuenta");
     }
 
+    function goToInicio() {
+        navigate("/inicio");
+    }
+
     return (
         <div className="h-screen w-screen bg-[#FFA82E] flex justify-end items-center relative overflow-hidden">
             {/* Mitad derecha con forma */}
@@ -51,6 +55,7 @@ export default function Login() {
                     <button
                         type="submit"
                         className="bg-[#FFA82E] hover:bg-[#e69727] text-white font-semibold p-3 rounded-md transition-all duration-200 "
+                        onClick={goToInicio}
                     >
                         Iniciar Sesión
                     </button>
