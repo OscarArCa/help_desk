@@ -2,13 +2,10 @@ import React, { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { Home, Users, LogOut, User, ChevronLeft, Camera, Layout, Mail, Phone, MapPin, Briefcase } from 'lucide-react';
 
-// --- Constantes de Diseño adaptadas a tu CSS Puro ---
-const COLOR_NARANJA = '#FFA82E'; // --color-naranja
-const COLOR_GRIS_ACTIVO = '#EBEBEB'; // --color-gris-item-activo
-const COLOR_GRIS_HOVER = '#F8F8F8'; // --color-gris-claro-hover
-const COLOR_NEGRO_TEXTO = '#000000'; // --color-negro-texto
-
-// --- Utilerías y Mocks (Simulación de Componentes de UI) ---
+const COLOR_NARANJA = '#FFA82E';
+const COLOR_GRIS_ACTIVO = '#EBEBEB';
+const COLOR_GRIS_HOVER = '#F8F8F8';
+const COLOR_NEGRO_TEXTO = '#000000';
 
 const Avatar: React.FC<React.PropsWithChildren<{ className?: string }>> = ({ className, children }) => (
     <div className={className}>{children}</div>
@@ -18,7 +15,7 @@ const AvatarFallback: React.FC<React.PropsWithChildren<{ className?: string }>> 
     <div className={`flex items-center justify-center ${className}`}>{children}</div>
 );
 
-// --- Sub-componentes ---
+
 
 interface NavItemProps {
     icon: React.ElementType;
@@ -31,24 +28,18 @@ interface NavItemProps {
 
 const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, onClick, to, isFooter = false }) => {
 
-    // Clase base replicando .nav-item y .nav-item--inactive
     let baseClasses = `flex items-center gap-3 transition-colors cursor-pointer text-[0.9375rem] text-[${COLOR_NEGRO_TEXTO}] py-[0.75rem] px-3 hover:bg-[${COLOR_GRIS_HOVER}]`;
 
     if (active) {
-        // Replicando .nav-item--active
-        // bg-[#EBEBEB] + border-l-4 border-[#FFA82E] + padding-left ajustado (pl-[8px] = 12px - 4px)
         baseClasses = `flex items-center gap-3 bg-[${COLOR_GRIS_ACTIVO}] border-l-4 border-[${COLOR_NARANJA}] text-[${COLOR_NEGRO_TEXTO}] font-medium py-[0.75rem] pl-[8px] pr-3 transition-colors cursor-pointer text-[0.9375rem]`;
     }
 
-    // Estilos del Pie de Página (Footer) - Replicando .nav-item--footer
     if (isFooter) {
-        // Reducimos tamaño de fuente y ajustamos padding/hover
         baseClasses = `flex items-center gap-3 py-[0.75rem] px-4 text-[0.875rem] text-gray-700 hover:bg-[${COLOR_GRIS_ACTIVO}] transition-colors cursor-pointer font-normal`;
     }
 
     const Content = (
         <>
-            {/* Íconos siempre de color negro (o gris oscuro) según tu nuevo CSS */}
             <Icon className="w-5 h-5 text-gray-800" />
             <span>{label}</span>
         </>
@@ -66,7 +57,6 @@ const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, onClick, t
     return <div {...commonProps}>{Content}</div>;
 };
 
-// --- Contenido de la Navegación Principal ---
 
 interface MainNavProps {
     onNavigate: (view: 'inicio' | 'perfil') => void;
@@ -82,13 +72,9 @@ const MainNav: React.FC<MainNavProps> = ({ onNavigate, currentPath }) => {
     return (
         <div className="main-nav flex flex-col h-full bg-white">
             <div className='main-nav__content flex-grow flex flex-col'>
-                {/* Encabezado Naranja - Replicando .main-nav__header y h: 180px */}
                 <div className={`main-nav__header bg-[${COLOR_NARANJA}] h-[180px] flex flex-col items-center justify-center p-4 space-y-1`}>
-                    {/* Contenedor del Avatar - Replicando .main-nav__avatar-wrapper (w-20 h-20) */}
                     <Avatar className="main-nav__avatar-wrapper w-20 h-20 rounded-full overflow-hidden bg-white shadow-md">
-                        {/* Avatar Fallback - Replicando .main-nav__avatar-fallback (Ícono blanco) */}
                         <AvatarFallback className={`main-nav__avatar-fallback bg-white text-white w-full h-full text-4xl`}>
-                            {/* Usamos el color white para el ícono de Lucide para simular el ícono SVG blanco en el fondo blanco */}
                             <User className="w-10 h-10 text-white" />
                         </AvatarFallback>
                     </Avatar>
@@ -98,7 +84,6 @@ const MainNav: React.FC<MainNavProps> = ({ onNavigate, currentPath }) => {
                     </div>
                 </div>
 
-                {/* Contenedor de Enlaces - Replicando .main-nav__links-container */}
                 <nav className="main-nav__links-container flex flex-col pt-3 pb-4">
                     <NavItem icon={Home} label="Inicio" to="/" active={isHomeActive} />
                     <NavItem icon={Layout} label="Tickets" to="/tickets" active={isTicketsActive} />
@@ -106,7 +91,6 @@ const MainNav: React.FC<MainNavProps> = ({ onNavigate, currentPath }) => {
                 </nav>
             </div>
 
-            {/* Pie de Página - Replicando .main-nav__footer-container */}
             <div className="main-nav__footer-container border-t border-gray-200 py-2">
                 <NavItem icon={User} label="Perfil" isFooter={true} onClick={() => onNavigate('perfil')} />
                 <NavItem icon={LogOut} label="Cerrar Sesión" isFooter={true} onClick={() => { /* Lógica de cerrar sesión */ }} />
@@ -114,8 +98,6 @@ const MainNav: React.FC<MainNavProps> = ({ onNavigate, currentPath }) => {
         </div>
     );
 };
-
-// --- Contenido de la Vista de Perfil (Solo ajustamos clases base si fuera necesario) ---
 
 interface PerfilViewProps {
     onBack: () => void;
@@ -141,13 +123,11 @@ const DetailItem: React.FC<DetailItemProps> = ({ icon: Icon, label, isBold = fal
 const PerfilView: React.FC<PerfilViewProps> = ({ onBack }) => (
     <div className="profile-view flex flex-col h-full bg-white text-gray-800">
         <div className='profile-view__scroll-content flex-grow overflow-y-auto'>
-            {/* Cabecera de Perfil - Replicando .profile-view__header */}
             <div className="profile-view__header flex items-center p-4 h-16 border-b border-gray-200">
                 <ChevronLeft className="w-6 h-6 text-gray-600 cursor-pointer hover:text-orange-500 transition-colors" onClick={onBack} />
                 <span className="ml-2 text-lg font-semibold">Perfil</span>
             </div>
 
-            {/* Avatar Centralizado y Nombre (Se mantiene el estilo moderno) */}
             <div className="flex flex-col items-center p-8 space-y-4">
                 <div className="relative w-32 h-32 rounded-full bg-gray-100 flex flex-col justify-center items-center text-gray-500 shadow-inner cursor-pointer hover:bg-gray-200 transition-colors">
                     <Camera className="w-8 h-8" />
@@ -157,7 +137,6 @@ const PerfilView: React.FC<PerfilViewProps> = ({ onBack }) => (
                 <p className="text-sm text-gray-500">ID: 9 2 2 2 2 3 4</p>
             </div>
 
-            {/* Lista de Detalles del Perfil */}
             <nav className="flex flex-col px-2 pb-4">
                 <DetailItem icon={Users} label="J&P PERIFERICOS S.A.C" isBold />
                 <DetailItem icon={Mail} label="aaaaa@gmail.com" />
@@ -167,7 +146,6 @@ const PerfilView: React.FC<PerfilViewProps> = ({ onBack }) => (
             </nav>
         </div>
 
-        {/* Pie de Página para la Vista de Perfil - Replicando .profile-view__footer-container */}
         <div className="profile-view__footer-container border-t border-gray-200 py-2">
             <NavItem icon={ChevronLeft} label="Volver a Navegación" isFooter={true} onClick={onBack} />
         </div>
@@ -175,7 +153,6 @@ const PerfilView: React.FC<PerfilViewProps> = ({ onBack }) => (
 );
 
 
-// --- Componente Principal Sidebar ---
 
 const Sidebar: React.FC = () => {
     const location = useLocation();
@@ -190,7 +167,6 @@ const Sidebar: React.FC = () => {
     const isProfileView = currentView === 'perfil';
 
     return (
-        // Replicando .sidebar-container con width: 240px
         <aside className="sidebar-container fixed top-0 left-0 z-40 w-[240px] flex flex-col h-screen bg-white shadow-xl">
             {isProfileView ? (
                 <PerfilView onBack={() => handleNavigation('inicio')} />
