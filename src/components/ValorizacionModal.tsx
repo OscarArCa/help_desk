@@ -31,7 +31,6 @@ const Dialog: React.FC<DialogProps> = ({ open, children }) => {
 
 const DialogPortal: React.FC<React.PropsWithChildren> = ({ children }) => children as ReactNode;
 
-// Emulación del Overlay (Fondo oscuro con blur)
 const DialogOverlay: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => (
     <div
         className={cn(
@@ -228,7 +227,7 @@ const DetailedRatingBar: React.FC<DetailedRatingBarProps> = ({ rating, count, ma
     );
 };
 
-const ValorizacionModal: React.FC<ValoracionModalProps> = ({ isOpen, onOpenChange, cliente }) => {
+export const ValorizacionModal: React.FC<ValoracionModalProps> = ({ isOpen, onOpenChange, cliente }) => {
     const {
         total,
         promotores,
@@ -271,7 +270,6 @@ const ValorizacionModal: React.FC<ValoracionModalProps> = ({ isOpen, onOpenChang
 
                         <div className="text-lg font-semibold text-gray-700 border-b border-gray-100 pb-3">Histórico de Tickets</div>
 
-                        {/* Headers de la tabla */}
                         <div className="grid grid-cols-[0.5fr_1.5fr_1fr_1fr_1fr_1fr_0.8fr] gap-4 px-4 py-2 bg-gray-100 font-bold text-xs uppercase rounded-t-lg text-gray-600 sticky top-0 z-10 shadow-sm">
                             <div>Id</div>
                             <div>Cliente</div>

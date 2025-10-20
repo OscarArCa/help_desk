@@ -3,7 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { Home, Users, LogOut, User, ChevronLeft, Camera, Layout, Mail, Phone, MapPin, Briefcase } from 'lucide-react';
 
 const COLOR_NARANJA = '#FFA82E';
-const COLOR_GRIS_ACTIVO = '#EBEBEB';
+const COLOR_GRIS_ACTIVO = '#F5F5F5';
 const COLOR_GRIS_HOVER = '#F8F8F8';
 const COLOR_NEGRO_TEXTO = '#000000';
 
@@ -14,8 +14,6 @@ const Avatar: React.FC<React.PropsWithChildren<{ className?: string }>> = ({ cla
 const AvatarFallback: React.FC<React.PropsWithChildren<{ className?: string }>> = ({ className, children }) => (
     <div className={`flex items-center justify-center ${className}`}>{children}</div>
 );
-
-
 
 interface NavItemProps {
     icon: React.ElementType;
@@ -31,7 +29,7 @@ const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, onClick, t
     let baseClasses = `flex items-center gap-3 transition-colors cursor-pointer text-[0.9375rem] text-[${COLOR_NEGRO_TEXTO}] py-[0.75rem] px-3 hover:bg-[${COLOR_GRIS_HOVER}]`;
 
     if (active) {
-        baseClasses = `flex items-center gap-3 bg-[${COLOR_GRIS_ACTIVO}] border-l-4 border-[${COLOR_NARANJA}] text-[${COLOR_NEGRO_TEXTO}] font-medium py-[0.75rem] pl-[8px] pr-3 transition-colors cursor-pointer text-[0.9375rem]`;
+        baseClasses = `flex items-center gap-3 bg-[${COLOR_GRIS_ACTIVO}] border-l-4 border-[#FF9500] text-[${COLOR_NEGRO_TEXTO}] font-medium py-[0.75rem] pl-[8px] pr-3 transition-colors cursor-pointer text-[0.9375rem]`;
     }
 
     if (isFooter) {
@@ -40,7 +38,7 @@ const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, onClick, t
 
     const Content = (
         <>
-            <Icon className="w-5 h-5 text-gray-800" />
+            <Icon className="w-5 h-5 text-gray-800 pl-[10px]" />
             <span>{label}</span>
         </>
     );
@@ -60,22 +58,22 @@ const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, onClick, t
 
 interface MainNavProps {
     onNavigate: (view: 'inicio' | 'perfil') => void;
-    currentPath: string; // Para saber qué enlace está activo
+    currentPath: string;
 }
 
 const MainNav: React.FC<MainNavProps> = ({ onNavigate, currentPath }) => {
     // Lógica de rutas
     const isTicketsActive = currentPath === '/tickets';
-    const isHomeActive = currentPath === '/' || (!isTicketsActive && currentPath !== '/clientes');
+    const isHomeActive = currentPath === '/inicio';
     const isClientesActive = currentPath === '/clientes';
 
     return (
         <div className="main-nav flex flex-col h-full bg-white">
             <div className='main-nav__content flex-grow flex flex-col'>
-                <div className={`main-nav__header bg-[${COLOR_NARANJA}] h-[180px] flex flex-col items-center justify-center p-4 space-y-1`}>
+                <div className={`main-nav__header bg-[${COLOR_NARANJA}] h-[250px] flex flex-col items-center justify-center p-4 space-y-1`}>
                     <Avatar className="main-nav__avatar-wrapper w-20 h-20 rounded-full overflow-hidden bg-white shadow-md">
                         <AvatarFallback className={`main-nav__avatar-fallback bg-white text-white w-full h-full text-4xl`}>
-                            <User className="w-10 h-10 text-white" />
+                            <User className="w-[175px] h-[175px] text-white" />
                         </AvatarFallback>
                     </Avatar>
                     <div className="main-nav__user-info text-white text-center mt-3">
@@ -84,8 +82,8 @@ const MainNav: React.FC<MainNavProps> = ({ onNavigate, currentPath }) => {
                     </div>
                 </div>
 
-                <nav className="main-nav__links-container flex flex-col pt-3 pb-4">
-                    <NavItem icon={Home} label="Inicio" to="/" active={isHomeActive} />
+                <nav className="main-nav__links-container flex flex-col pt-3 pb-4 ">
+                    <NavItem icon={Home} label="Inicio" to="/inicio" active={isHomeActive} />
                     <NavItem icon={Layout} label="Tickets" to="/tickets" active={isTicketsActive} />
                     <NavItem icon={Users} label="Cliente" to="/clientes" active={isClientesActive} />
                 </nav>

@@ -13,10 +13,10 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ title, icon: Icon }) => {
     return (
-        <header className="flex justify-between items-start mb-10">
+        <header className="flex justify-between items-center border-[2px] rounded-[20px] max-w-[1800px] p-[5px] m-[20px]">
             <div className="flex items-center space-x-3">
                 {/* Ícono dinámico: Gris Medio de Figma */}
-                <Icon className={`w-8 h-8 text-[${COLOR_GRIS_MEDIO}]`} />
+                <Icon className={`w-[70px] h-[70px] text-[${COLOR_GRIS_MEDIO}] m-[20px]`} />
                 <h1 className="text-3xl font-bold text-gray-800">{title}</h1>
             </div>
             {/* Información de la Empresa (Fija) */}
