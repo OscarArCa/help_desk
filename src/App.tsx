@@ -5,23 +5,25 @@ import Inicio from "@/pages/Inicio"; // Asegúrate de que no tenga la extensión
 // 🚨 CORRECCIÓN: Importar el componente de PÁGINA Tickets, NO el ícono 🚨
 import TicketsPage from "@/pages/Tickets";
 import Chat from "@/pages/Chat.tsx";
+import Clientes from "@/pages/Clientes.tsx";
 // Eliminamos la importación del ícono: import {Tickets} from "lucide-react";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                {/* La ruta raíz (/) te lleva al Login. */}
                 <Route path="/" element={<Login />} />
+
                 <Route path="/recuperar-cuenta" element={<RecuperarCuenta />} />
 
-                {/* Si quieres que Inicio sea el dashboard principal, usa /inicio o /dashboard */}
                 <Route path="/inicio" element={<Inicio />} />
 
-                {/* 🚨 CLAVE: Usamos el componente TicketsPage que contiene la tabla y el sidebar. 🚨 */}
                 <Route path="/tickets" element={<TicketsPage />} />
 
                 <Route path="/chat" element={<Chat />} />
+
+                <Route path="/clientes" element={<Clientes />} />
+
             </Routes>
         </BrowserRouter>
     );

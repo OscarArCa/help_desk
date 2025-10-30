@@ -3,7 +3,7 @@
 import React from 'react';
 import { Search, Calendar, Mail } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-// Importación CORRECTA de Shadcn/ui (asumiendo que instalaste 'select' en src/components/ui)
+import { useNavigate } from 'react-router-dom';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 
@@ -30,28 +30,30 @@ const getEstadoClass = (estado: string) => {
 };
 
 const TicketsTable: React.FC = () => {
+    const navigate = useNavigate();
+
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 m-[20px]">
             {/* --- SECCIÓN DE FILTROS --- */}
-            <div className="flex flex-wrap items-end gap-4 p-4 rounded-lg border border-gray-200 shadow-sm">
+            <div className="flex flex-wrap items-end gap-4 p-4 rounded-lg border border-gray-200 shadow-sm m-[10px]">
 
                 {/* Tipo de Incidente */}
-                <div className="flex-1 min-w-[200px] max-w-[250px] space-y-1">
+                <div className="flex-1 min-w-[200px] max-w-[300px] m-[10px]">
                     <label className="text-sm font-semibold">Tipo de incidente</label>
                     <div className="relative">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                         <Input
                             placeholder="Buscar Tipo de Incidente"
-                            className="pl-10 h-10 border-gray-300 focus:border-[${COLOR_NARANJA}]"
+                            className="pl-10 h-10 border-gray-300 focus:border-[${COLOR_NARANJA}] pr-[25px] pl-[25px] pt-[10px] pb-[10px] w-[250px]"
                         />
                     </div>
                 </div>
 
                 {/* Área y Estado (Selects) */}
-                <div className="space-y-1 min-w-[120px]">
+                <div className="space-y-1 min-w-[120px] max-w-[300px] m-[10px]">
                     <label className="text-sm font-semibold">Área</label>
                     <Select>
-                        <SelectTrigger className="w-[120px] h-10 border-gray-300 focus:border-[${COLOR_NARANJA}] focus:ring-0">
+                        <SelectTrigger className="w-[120px] h-10 border-gray-300 focus:border-[${COLOR_NARANJA}] focus:ring-0 pr-[25px] pl-[25px] pt-[10px] pb-[10px]">
                             <SelectValue placeholder="Todo" />
                         </SelectTrigger>
                         <SelectContent>
@@ -62,33 +64,33 @@ const TicketsTable: React.FC = () => {
                 </div>
 
                 {/* Rango de Fecha (Inputs con Icono) */}
-                <div className="flex gap-2 items-end">
+                <div className="flex gap-2 items-end max-w-[550px] m-[10px]">
                     <div className="space-y-1 min-w-[120px]">
                         <label className="text-sm font-semibold">Rango de Fecha</label>
                         <div className="relative">
                             <Input
                                 defaultValue="17/Abril/2020"
-                                className="pr-8 w-[140px] h-10 border-gray-300 focus:border-[${COLOR_NARANJA}]"
+                                className="pr-8 w-[140px] h-10 border-gray-300 focus:border-[${COLOR_NARANJA}] pr-[25px] pl-[25px] pt-[10px] pb-[10px] mr-[10px]"
                             />
-                            <Calendar className={`absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-[${COLOR_NARANJA}]`} />
+                            <Calendar className={`absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4`} />
                         </div>
                     </div>
                     <div className="space-y-1 min-w-[120px]">
                         <div className="relative">
                             <Input
                                 defaultValue="17/May/2020"
-                                className="pr-8 w-[140px] h-10 border-gray-300 focus:border-[${COLOR_NARANJA}]"
+                                className="pr-8 w-[140px] h-10 border-gray-300 focus:border-[${COLOR_NARANJA}] pr-[25px] pl-[25px] pt-[10px] pb-[10px]"
                             />
-                            <Calendar className={`absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-[${COLOR_NARANJA}]`} />
+                            <Calendar className={`absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4`} />
                         </div>
                     </div>
                 </div>
 
                 {/* Estado */}
-                <div className="space-y-1 min-w-[120px]">
+                <div className="space-y-1 min-w-[120px] max-w-[300px] m-[10px]">
                     <label className="text-sm font-semibold">Estado:</label>
                     <Select>
-                        <SelectTrigger className="w-[120px] h-10 border-gray-300 focus:border-[${COLOR_NARANJA}] focus:ring-0">
+                        <SelectTrigger className="w-[150px] h-10 border-gray-300 focus:border-[${COLOR_NARANJA}] focus:ring-0 pr-[25px] pl-[25px] pt-[10px] pb-[10px]">
                             <SelectValue placeholder="Estado" />
                         </SelectTrigger>
                         <SelectContent>
@@ -99,10 +101,10 @@ const TicketsTable: React.FC = () => {
                 </div>
 
                 {/* Búsqueda Final */}
-                <div className="min-w-[120px]">
+                <div className="min-w-[120px] max-w-[300px] m-[10px]">
                     <Input
                         placeholder="Buscar"
-                        className="w-[120px] h-10 border-gray-300 focus:border-[${COLOR_NARANJA}]"
+                        className="w-[200px] h-10 border-gray-300 focus:border-[${COLOR_NARANJA}] pr-[25px] pl-[25px] pt-[10px] pb-[10px]"
                     />
                 </div>
             </div>
@@ -110,7 +112,7 @@ const TicketsTable: React.FC = () => {
             {/* --- TABLA --- */}
             <div className="overflow-x-auto border rounded-lg shadow-md">
                 {/* Cabecera Naranja de la Tabla */}
-                <div className={`grid grid-cols-tickets-lg gap-px text-sm font-semibold text-white bg-[${COLOR_NARANJA}]`}>
+                <div className={`grid grid-cols-tickets-lg gap-px text-sm font-semibold text-white bg-[${COLOR_NARANJA}] p-[10px]`}>
                     <div className="p-3">Id</div>
                     <div className="p-3">Tipo de incidente</div>
                     <div className="p-3">Usuario</div>
@@ -126,7 +128,7 @@ const TicketsTable: React.FC = () => {
                 {tickets.map((ticket, index) => (
                     <div
                         key={ticket.id}
-                        className={`grid grid-cols-tickets-lg gap-px text-sm border-b ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
+                        className={`grid grid-cols-tickets-lg gap-px text-sm border-b ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} p-[10px]`}
                     >
                         <div className="p-3 font-medium text-gray-700">{ticket.id}</div>
                         <div className="p-3">{ticket.tipo}</div>
@@ -141,7 +143,12 @@ const TicketsTable: React.FC = () => {
                         </div>
                         <div className="p-3">{ticket.fecha}</div>
                         <div className="p-3 flex justify-center">
-                            <Mail className={`w-5 h-5 cursor-pointer text-[${COLOR_NARANJA}] hover:opacity-80`} />
+                            <Mail
+                                className={`w-5 h-5 cursor-pointer hover:opacity-80`}
+                                style={{ color: COLOR_NARANJA }}
+                                onClick={() => navigate(`/chat`)}
+                            />
+
                         </div>
                     </div>
                 ))}
