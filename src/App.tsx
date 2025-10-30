@@ -1,12 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import RecuperarCuenta from "./pages/RecuperarCuenta";
-import Inicio from "@/pages/Inicio"; // Asegúrate de que no tenga la extensión .tsx aquí
+import InicioClient from "@/pages/InicioClient"; 
 // 🚨 CORRECCIÓN: Importar el componente de PÁGINA Tickets, NO el ícono 🚨
 import TicketsPage from "@/pages/Tickets";
 import Chat from "@/pages/Chat.tsx";
 import Clientes from "@/pages/Clientes.tsx";
 // Eliminamos la importación del ícono: import {Tickets} from "lucide-react";
+import Inicio from "./pages/Inicio";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
 
                 <Route path="/clientes" element={<Clientes />} />
 
+                <Route path="/inicioClient" element={<InicioClient />} />
             </Routes>
         </BrowserRouter>
     );
