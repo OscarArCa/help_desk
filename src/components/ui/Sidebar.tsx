@@ -1,5 +1,6 @@
 import React from 'react';
 import { Home, Ticket, Monitor, User, LogOut } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 export function logout() {
   localStorage.removeItem("token");
@@ -8,6 +9,8 @@ export function logout() {
 }
 
 const Sidebar: React.FC = () => {
+    const location = useLocation();
+
     return (
         <div className="sidebar">
             <div className="sidebar-header">
@@ -19,29 +22,46 @@ const Sidebar: React.FC = () => {
             </div>
 
             <nav className="sidebar-nav">
-                <a href="#" className="sidebar-link active">
+                <Link
+                    to="/inicioClient"
+                    className={`sidebar-link ${location.pathname === '/inicio' ? 'active' : ''}`}
+                >
                     <Home size={20} />
                     <span>Inicio</span>
-                </a>
-                <a href="#" className="sidebar-link">
+                </Link>
+
+                <Link
+                    to="/TicketClient"
+                    className={`sidebar-link ${location.pathname === '/tickets' ? 'active' : ''}`}
+                >
                     <Ticket size={20} />
                     <span>Tickets</span>
-                </a>
-                <a href="#" className="sidebar-link">
+                </Link>
+
+                <Link
+                    to="/equipos"
+                    className={`sidebar-link ${location.pathname === '/equipos' ? 'active' : ''}`}
+                >
                     <Monitor size={20} />
                     <span>Equipos</span>
-                </a>
+                </Link>
             </nav>
 
             <div className="sidebar-footer">
-                <a href="#" className="sidebar-link">
+                <Link
+                    to="/perfil"
+                    className={`sidebar-link ${location.pathname === '/perfil' ? 'active' : ''}`}
+                >
                     <User size={20} />
                     <span>Perfil</span>
-                </a>
-                <a href="#" className="sidebar-link" onClick={logout}>
+                </Link>
+                <Link
+                    to="/login"
+                    className={`sidebar-link ${location.pathname === '/login' ? 'active' : ''}`}
+                >
                     <LogOut size={20} />
                     <span>Cerrar Sesión</span>
-                </a>
+                </Link>
             </div>
         </div>
     );

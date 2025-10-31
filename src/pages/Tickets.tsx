@@ -6,7 +6,7 @@ import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header'; // Importamos el nuevo Header
 import TicketsTable from '@/components/TicketsTable'; // Importamos la nueva Tabla
 
-const Tickets: React.FC = () => {
+const Ticket: React.FC = () => {
     return (
         <div className="min-h-screen bg-white">
             <Sidebar />
@@ -28,4 +28,4 @@ const Tickets: React.FC = () => {
     );
 };
 
-export default Tickets;
+export default Ticket;
