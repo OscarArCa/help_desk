@@ -23,8 +23,8 @@ body {
 
 /* Sidebar */
 .sidebar {
-    width: 144px;
-    min-width: 144px;
+    width: 200px;
+    min-width: 150px;
     background-color: white;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -33,7 +33,7 @@ body {
 }
 
 .sidebar-header {
-    background-color: #f97316;
+    background-color: #FF9500;
     padding: 1rem;
     text-align: center;
     color: white;
@@ -60,8 +60,9 @@ body {
 }
 
 .sidebar-role {
-    font-size: 0.75rem;
+    
     opacity: 0.9;
+    color: #606060;
 }
 
 .sidebar-nav {
@@ -215,6 +216,7 @@ body {
     border-radius: 9999px;
     font-size: 0.875rem;
     font-weight: 600;
+    color : black;
     border: none;
     cursor: pointer;
     transition: all 0.2s;

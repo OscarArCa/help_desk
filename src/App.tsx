@@ -48,7 +48,7 @@ function App() {
 
                 <Route path="/inicio" element={<Inicio />} />
 
-                <Route path="/TicketClient" element={<TicketClient />} />
+                <Route path="/ticketClient" element={<TicketClient />} />
 
                 <Route path="/chat" element={<Chat />} />
 

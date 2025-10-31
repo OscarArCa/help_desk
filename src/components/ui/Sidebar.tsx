@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAuth } from "@/context/AuthContext";
 import { Home, Ticket, Monitor, User, LogOut } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -10,15 +11,16 @@ export function logout() {
 
 const Sidebar: React.FC = () => {
     const location = useLocation();
+    const { user } = useAuth();
 
     return (
         <div className="sidebar">
             <div className="sidebar-header">
                 <div className="sidebar-avatar">
-                    <User size={32}/>
+                    <User size={50} />
                 </div>
-                <div className="sidebar-name">Alberto Perez</div>
-                <div className="sidebar-role">Cliente</div>
+                <div className="sidebar-name">{user?.name}</div>
+                <div className="sidebar-role">{user?.roles}</div>
             </div>
 
             <nav className="sidebar-nav">
@@ -58,6 +60,7 @@ const Sidebar: React.FC = () => {
                 <Link
                     to="/login"
                     className={`sidebar-link ${location.pathname === '/login' ? 'active' : ''}`}
+                    onClick={logout}
                 >
                     <LogOut size={20} />
                     <span>Cerrar Sesión</span>
