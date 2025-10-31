@@ -12,7 +12,7 @@ const Sidebar: React.FC = () => {
         <div className="sidebar">
             <div className="sidebar-header">
                 <div className="sidebar-avatar">
-                    <User size={32} />
+                    <User size={32}/>
                 </div>
                 <div className="sidebar-name">Alberto Perez</div>
                 <div className="sidebar-role">Cliente</div>

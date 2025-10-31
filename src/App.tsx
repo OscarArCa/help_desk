@@ -13,7 +13,7 @@ import { PublicRoute } from "./components/auth/ProtectedLogin";
 
 function App() {
     return (
-        <AuthProvider> {/* ✅ ENVOLVER TODA LA APP */}
+        <AuthProvider>
             <BrowserRouter>
                 <Routes>
                     <Route
