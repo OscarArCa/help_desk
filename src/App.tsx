@@ -21,7 +21,7 @@ function App() {
 
                 <Route path="/inicio" element={<Inicio />} />
 
-                <Route path="/TicketsPage" element={<TicketClient />} />
+                <Route path="/TicketClient" element={<TicketClient />} />
 
                 <Route path="/chat" element={<Chat />} />
 

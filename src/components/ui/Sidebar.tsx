@@ -17,7 +17,7 @@ const Sidebar: React.FC = () => {
 
             <nav className="sidebar-nav">
                 <Link
-                    to="/inicio"
+                    to="/inicioClient"
                     className={`sidebar-link ${location.pathname === '/inicio' ? 'active' : ''}`}
                 >
                     <Home size={20} />
@@ -25,7 +25,7 @@ const Sidebar: React.FC = () => {
                 </Link>
 
                 <Link
-                    to="/tickets"
+                    to="/TicketClient"
                     className={`sidebar-link ${location.pathname === '/tickets' ? 'active' : ''}`}
                 >
                     <Ticket size={20} />
