@@ -1,38 +1,35 @@
-import { createContext, useContext, useEffect , useState, ReactNode } from "react";
+// src/context/AuthContext.tsx
+import { createContext, useContext, useState, ReactNode } from "react";
+
+interface User {
+  id: number;
+  email: string;
+  roles: string;
+  // ... otros campos que tengas
+}
 
 interface AuthContextType {
-  user: any;
-  setUser: (user: any) => void;
-  logout: () => void;
+  user: User | null;
+  setUser: (user: User | null) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<any>(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) setUser(JSON.parse(storedUser));
-    }
-  }, []);
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    setUser(null);
-  };
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<User | null>(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
   return (
-    <AuthContext.Provider value={{ user, setUser, logout }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (!context) throw new Error("useAuth debe usarse dentro de AuthProvider");
+  if (!context) throw new Error("useAuth debe usarse dentro de un AuthProvider");
   return context;
 }

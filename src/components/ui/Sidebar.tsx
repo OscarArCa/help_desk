@@ -1,6 +1,12 @@
 import React from 'react';
 import { Home, Ticket, Monitor, User, LogOut } from 'lucide-react';
 
+export function logout() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  window.location.href = "/";
+}
+
 const Sidebar: React.FC = () => {
     return (
         <div className="sidebar">
@@ -32,7 +38,7 @@ const Sidebar: React.FC = () => {
                     <User size={20} />
                     <span>Perfil</span>
                 </a>
-                <a href="#" className="sidebar-link">
+                <a href="#" className="sidebar-link" onClick={logout}>
                     <LogOut size={20} />
                     <span>Cerrar Sesión</span>
                 </a>

@@ -26,7 +26,18 @@ export default function Login() {
         localStorage.setItem("user", JSON.stringify(data.user));
         setUser(data.user);
 
-        navigate("/inicio");
+        
+        const rol = (data.user.roles && Array.isArray(data.user.roles))
+        ? data.user.roles[0].toLowerCase()
+        : data.user.roles?.toLowerCase();
+
+        if (rol === "InSituSupport") {
+            navigate("/inicio");
+        } else if (rol === "client") {
+            navigate("/inicioClient");
+        } else {
+            navigate("/inicio");
+        }
     } catch (error: any) {
         setError(error.message);
         console.error("Error en el login:", error);

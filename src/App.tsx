@@ -1,10 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "@/context/AuthContext"; // ✅ IMPORTANTE
 import Login from "./pages/Login";
 import RecuperarCuenta from "./pages/RecuperarCuenta";
-import InicioClient from "@/pages/InicioClient"; 
-// 🚨 CORRECCIÓN: Importar el componente de PÁGINA Tickets, NO el ícono 🚨
+import InicioClient from "@/pages/InicioClient";
 import Clientes from "@/pages/Clientes.tsx";
-// Eliminamos la importación del ícono: import {Tickets} from "lucide-react";
 import Inicio from "@/pages/Inicio";
 import TicketsPage from "@/pages/Tickets";
 import Chat from "@/pages/Chat.tsx";
@@ -14,36 +13,43 @@ import { PublicRoute } from "./components/auth/ProtectedLogin";
 
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={
-                    <PublicRoute>
-                        <Login />
-                    </PublicRoute>
-                    }
+        <AuthProvider> {/* ✅ ENVOLVER TODA LA APP */}
+            <BrowserRouter>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <PublicRoute>
+                                <Login />
+                            </PublicRoute>
+                        }
                     />
-                <Route path="/recuperar-cuenta" element={<RecuperarCuenta />} />
+                    <Route path="/recuperar-cuenta" element={<RecuperarCuenta />} />
 
-                <Route path="/inicio" element={
-                    <ProtectedRoute>
-                        <Inicio />
-                    </ProtectedRoute>
-                }/>
-                <Route path="/tickets" element={
-                    <ProtectedRoute>
-                        <TicketsPage />
-                    </ProtectedRoute>
-                    } />
+                    <Route
+                        path="/inicio"
+                        element={
+                            <ProtectedRoute>
+                                <Inicio />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/tickets"
+                        element={
+                            <ProtectedRoute>
+                                <TicketsPage />
+                            </ProtectedRoute>
+                        }
+                    />
 
-                <Route path="/chat" element={<Chat />} />
-
-                <Route path="/clientes" element={<Clientes />} />
-
-                <Route path="/inicioClient" element={<InicioClient />} />
-            </Routes>
-        </BrowserRouter>
+                    <Route path="/chat" element={<Chat />} />
+                    <Route path="/clientes" element={<Clientes />} />
+                    <Route path="/inicioClient" element={<InicioClient />} />
+                </Routes>
+            </BrowserRouter>
+        </AuthProvider>
     );
 }
 
 export default App;
-
