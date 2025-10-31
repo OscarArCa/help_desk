@@ -1,61 +1,72 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { apiFetch } from "@/services/api";
+import { useAuth } from "@/context/AuthContext";
 import "@/styles/login.css";
 
 export default function Login() {
+    const { setUser } = useAuth();
     const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        console.log("Intentando iniciar sesión...");
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError("");
+
+
+    try {
+        const data = await apiFetch("/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+        });
+
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        setUser(data.user);
+
+        navigate("/inicio");
+    } catch (error: any) {
+        setError(error.message);
+        console.error("Error en el login:", error);
+    }
     }
 
     function goToRecuperarCuenta() {
         navigate("/recuperar-cuenta");
     }
 
-    function goToInicio() {
-        navigate("/inicio");
-    }
-
     return (
         <div className="h-screen w-screen bg-[#FFA82E] flex justify-end items-center relative overflow-hidden">
-            {/* Mitad derecha con forma */}
             <div className="h-screen w-1/2 bg-[#4A4A4A] flex flex-col justify-center items-center relative login-shape">
-                {/* Encabezado */}
                 <div className="bg-[#5C5C5C] w-[80%] max-w-[600px] rounded-md p-6 text-center input-separado">
                     <h1 className="header-login">INICIO DE SESIÓN</h1>
                 </div>
 
-                {/* Formulario */}
                 <form onSubmit={handleSubmit} className="flex flex-col space-y-4 w-[80%] max-w-[400px]">
                     <input
                         type="email"
                         placeholder="Correo electrónico"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                         className="p-3 rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-[#FFA82E] h-[30px] input-separado"
                     />
                     <input
                         type="password"
                         placeholder="Contraseña"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         required
                         className="p-3 rounded-md bg-white text-black focus:outline-none focus:ring-2 focus:ring-[#FFA82E] h-[30px]"
                     />
 
-                    <div className="flex items-center justify-center space-x-2 header-login">
-                        <input
-                            type="checkbox"
-                            id="remember"
-                            className="w-4 h-4 accent-[#FFA82E]"
-                        />
-                        <label htmlFor="remember" className="text-sm text-white">
-                            Recordar contraseña
-                        </label>
-                    </div>
+                    {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
                     <button
                         type="submit"
                         className="bg-[#FFA82E] hover:bg-[#e69727] text-white font-semibold p-3 rounded-md transition-all duration-200 "
-                        onClick={goToInicio}
                     >
                         Iniciar Sesión
                     </button>

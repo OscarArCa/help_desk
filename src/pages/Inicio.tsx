@@ -6,7 +6,7 @@ import TicketMessagesCard from "../components/TicketMessagesCard";
 import { Home, FileText, Bell, History, Star } from "lucide-react"; // Se elimina MessageSquare de la importación
 
 const COLOR_NARANJA = "#FFC676";
-
+    
 interface StatsCardProps {
     title: string;
     value: string | number;

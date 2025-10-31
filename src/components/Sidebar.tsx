@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from "@/context/AuthContext";
 import { useLocation, Link } from 'react-router-dom';
 import { Home, Users, LogOut, User, ChevronLeft, Camera, Layout, Mail, Phone, MapPin, Briefcase } from 'lucide-react';
 
@@ -14,6 +15,10 @@ const Avatar: React.FC<React.PropsWithChildren<{ className?: string }>> = ({ cla
 const AvatarFallback: React.FC<React.PropsWithChildren<{ className?: string }>> = ({ className, children }) => (
     <div className={`flex items-center justify-center ${className}`}>{children}</div>
 );
+
+//const token = localStorage.getItem("token");
+//const user = JSON.parse(localStorage.getItem("user") || "{}");
+
 
 interface NavItemProps {
     icon: React.ElementType;
@@ -55,6 +60,11 @@ const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, active, onClick, t
     return <div {...commonProps}>{Content}</div>;
 };
 
+export function logout() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  window.location.href = "/";
+}
 
 interface MainNavProps {
     onNavigate: (view: 'inicio' | 'perfil') => void;
@@ -66,6 +76,7 @@ const MainNav: React.FC<MainNavProps> = ({ onNavigate, currentPath }) => {
     const isTicketsActive = currentPath === '/tickets';
     const isHomeActive = currentPath === '/inicio';
     const isClientesActive = currentPath === '/clientes';
+    const { user } = useAuth();
 
     return (
         <div className="main-nav flex flex-col h-full bg-white">
@@ -77,8 +88,8 @@ const MainNav: React.FC<MainNavProps> = ({ onNavigate, currentPath }) => {
                         </AvatarFallback>
                     </Avatar>
                     <div className="main-nav__user-info text-white text-center mt-3">
-                        <p className="main-nav__user-name font-semibold text-lg">Alberto Perez</p>
-                        <p className="main-nav__user-role text-sm opacity-90">Soporte TI</p>
+                        <p className="main-nav__user-name font-semibold text-lg">{user.name}</p>
+                        <p className="main-nav__user-role text-sm opacity-90">{user.roles}</p>
                     </div>
                 </div>
 
@@ -91,7 +102,7 @@ const MainNav: React.FC<MainNavProps> = ({ onNavigate, currentPath }) => {
 
             <div className="main-nav__footer-container border-t border-gray-200 py-2">
                 <NavItem icon={User} label="Perfil" isFooter={true} onClick={() => onNavigate('perfil')} />
-                <NavItem icon={LogOut} label="Cerrar Sesión" isFooter={true} onClick={() => { /* Lógica de cerrar sesión */ }} />
+                <NavItem icon={LogOut} label="Cerrar Sesión" isFooter={true} onClick={logout} />
             </div>
         </div>
     );
