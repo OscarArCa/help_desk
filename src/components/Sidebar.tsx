@@ -16,9 +16,6 @@ const AvatarFallback: React.FC<React.PropsWithChildren<{ className?: string }>> 
     <div className={`flex items-center justify-center ${className}`}>{children}</div>
 );
 
-//const token = localStorage.getItem("token");
-//const user = JSON.parse(localStorage.getItem("user") || "{}");
-
 
 interface NavItemProps {
     icon: React.ElementType;
@@ -88,8 +85,8 @@ const MainNav: React.FC<MainNavProps> = ({ onNavigate, currentPath }) => {
                         </AvatarFallback>
                     </Avatar>
                     <div className="main-nav__user-info text-white text-center mt-3">
-                        <p className="main-nav__user-name font-semibold text-lg">{user.name}</p>
-                        <p className="main-nav__user-role text-sm opacity-90">{user.roles}</p>
+                        <p className="main-nav__user-name font-semibold text-lg">{user?.name}</p>
+                        <p className="main-nav__user-role text-sm opacity-90">{user?.roles}</p>
                     </div>
                 </div>
 
