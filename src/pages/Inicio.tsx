@@ -7,7 +7,7 @@ import TicketMessages from '../components/ui/TicketMessages';
 import ProgressBox from '../components/ui/ProgressBox';
 import CalendarBox from '../components/ui/CalendarBox';
 import VistaDiaCalendario from '../components/ui/VistaDiaCalendario'; // AGREGAR
-import VistaMesCalendario from '../components/ui/VistaMesCalendario'; // AGREGAR
+//import VistaMesCalendario from '../components/ui/VistaMesCalendario'; // AGREGAR
 import '../Dashboard.css';
 import '../VistaDiaCalendario.css'; // AGREGAR
 import '../VistaMesCalendario.css'; // AGREGAR
