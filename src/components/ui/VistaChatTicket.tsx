@@ -137,7 +137,7 @@ const VistaChatTicket: React.FC<VistaChatTicketProps> = ({
                                 onClick={toggleEstado}
                                 style={{
                                     backgroundColor:
-                                        estadoTicket === 'Activo' ? '#10b981' : '#ef4444'
+                                        estadoTicket === 'Activo' ? '#FF9500' : '#FF9500'
                                 }}
                             >
                                 {estadoTicket === 'Activo' ? 'Desactivar ticket' : 'Activar ticket'}
