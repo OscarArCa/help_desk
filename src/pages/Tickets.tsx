@@ -1,28 +1,20 @@
-// src/pages/Tickets.tsx
-
 import React from 'react';
 import { History } from 'lucide-react';
 import Sidebar from '@/components/Sidebar';
-import Header from '@/components/Header'; // Importamos el nuevo Header
-import TicketsTable from '@/components/TicketsTable'; // Importamos la nueva Tabla
+import Header from '@/components/Header';
+import TicketsTable from '@/components/TicketsTable';
 
 const Tickets: React.FC = () => {
     return (
-        <div className="min-h-screen bg-white">
+        <div className="flex min-h-screen bg-white">
             <Sidebar />
 
-            {/* Aplicamos el margen ml-[240px] para compensar el Sidebar fijo */}
-            <main className="ml-[240px] flex-1 p-8 bg-gray-50">
-
-                {/* Nuevo Header Reutilizable: Muestra "Historial de Tickets" con el ícono History */}
+            <main className="flex-1 ml-[240px] p-8 bg-gray-50">
                 <Header
                     title="Historial de Tickets"
-                    icon={History} // Usamos el ícono de Historia como se ve en el diseño
+                    icon={History}
                 />
-
-                {/* Nuevo Componente de Tabla (con filtros y datos) */}
                 <TicketsTable />
-
             </main>
         </div>
     );
