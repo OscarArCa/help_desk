@@ -35,7 +35,7 @@ const TicketsTable: React.FC = () => {
     return (
         <div className="space-y-6 m-[20px]">
             {/* --- SECCIÓN DE FILTROS --- */}
-            <div className="flex flex-wrap items-end gap-4 p-4 rounded-lg border border-gray-200 shadow-sm m-[10px]">
+            <div className="flex flex-wrap items-end gap-4 p-4 rounded-lg border border-gray-200 shadow-sm m-[10px] ">
 
                 {/* Tipo de Incidente */}
                 <div className="flex-1 min-w-[200px] max-w-[300px] m-[10px]">

@@ -62,7 +62,7 @@ const Button: React.FC<ButtonProps> = ({ className = '', children, ...props }) =
 
 // --- Componente 1: Detalle del Ticket ---
 const TicketDetailsPanel: React.FC = () => (
-    <div className="w-[300px] bg-white flex flex-col h-full border-r border-gray-200">
+    <div className="w-[300px] bg-white flex flex-col h-auto border-[1px] border-gray-200 m-[10px] rounded-[20px] p-[10px]">
         <div className="bg-gray-50 p-4 border-b">
             <span className="font-bold text-gray-800 text-sm">#T-0000001</span>
             <p className="text-xs text-gray-600">Motivo: Problema en el encendido</p>
@@ -88,7 +88,7 @@ const TicketDetailsPanel: React.FC = () => (
 
 // --- Componente de Mensaje Individual ---
 const MessageBlock: React.FC<{ message: Message }> = ({ message }) => (
-    <div className="p-4 border-b">
+    <div className="border-[1px] p-[10px] rounded-[10px] mt-[10px]">
         <div className="flex justify-between">
             <div className="flex items-center space-x-2">
                 <User className="w-5 h-5" />
@@ -149,7 +149,7 @@ const ConversationPanel: React.FC = () => {
             </div>
 
             {/* Área de respuesta */}
-            <div style={{ backgroundColor: COLOR_RESPUESTA_HEADER }}>
+            <div style={{ backgroundColor: COLOR_RESPUESTA_HEADER, marginBottom: '10px', borderRadius: '10px' }}>
                 <div className="flex justify-between px-4 py-2 border-b">
                     <h4 className="font-semibold">Responder</h4>
                 </div>
