@@ -126,14 +126,14 @@ const ClienteModal: React.FC<ClienteModalProps> = ({ onClose, clienteData }) => 
                             </div>
                             <h3 className="font-semibold mt-4 mb-2">Contactos de referencia:</h3>
                             <table className="w-full border text-sm bg-white rounded-lg overflow-hidden shadow-sm">
-                                <thead style={{ backgroundColor: COLOR_HEADER }}>
+                                <thead style={{ backgroundColor: COLOR_HEADER}}>
                                 <tr>
-                                    <th className="border px-2 py-1">Nombre</th>
-                                    <th className="border px-2 py-1">Dirección</th>
-                                    <th className="border px-2 py-1">Correo</th>
-                                    <th className="border px-2 py-1">Teléfono</th>
-                                    <th className="border px-2 py-1">Cargo</th>
-                                    <th className="border px-2 py-1">Activo</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Nombre</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Dirección</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Correo</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Teléfono</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Cargo</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Activo</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -164,12 +164,12 @@ const ClienteModal: React.FC<ClienteModalProps> = ({ onClose, clienteData }) => 
                             <table className="w-full border text-sm bg-white rounded-lg overflow-hidden shadow-sm">
                                 <thead style={{ backgroundColor: COLOR_HEADER }}>
                                 <tr>
-                                    <th className="border px-2 py-1">Nombre</th>
-                                    <th className="border px-2 py-1">Dirección</th>
-                                    <th className="border px-2 py-1">Correo</th>
-                                    <th className="border px-2 py-1">Teléfono</th>
-                                    <th className="border px-2 py-1">Cargo</th>
-                                    <th className="border px-2 py-1">Activo</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Nombre</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Dirección</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Correo</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Teléfono</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Cargo</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Activo</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -200,10 +200,10 @@ const ClienteModal: React.FC<ClienteModalProps> = ({ onClose, clienteData }) => 
                             <table className="w-full border text-sm bg-white rounded-lg overflow-hidden shadow-sm">
                                 <thead style={{ backgroundColor: COLOR_HEADER }}>
                                 <tr>
-                                    <th className="border px-2 py-1">Area</th>
-                                    <th className="border px-2 py-1">Contacto</th>
-                                    <th className="border px-2 py-1">Telefono</th>
-                                    <th className="border px-2 py-1">Correo</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Area</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Contacto</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Telefono</th>
+                                    <th className="border px-2 py-1 rounded-[10px]">Correo</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -232,7 +232,7 @@ const ClienteModal: React.FC<ClienteModalProps> = ({ onClose, clienteData }) => 
                                     <input
                                         type="email"
                                         placeholder="Correo Electronico"
-                                        className=" w-[200px] border border-gray-300 rounded-md bg-white h-10 shadow-sm focus:outline-none focus:ring-0 focus:border-[#FFA82E] pr-[25px] pl-[25px]"
+                                        className=" w-[200px] border border-gray-300 rounded-md bg-white h-10 shadow-sm focus:outline-none focus:ring-0 focus:border-[#FFA82E] p-[10px]"
                                     />
                                 </div>
                                 <div>
@@ -241,7 +241,7 @@ const ClienteModal: React.FC<ClienteModalProps> = ({ onClose, clienteData }) => 
                                         type="password"
                                         value="********************"
                                         readOnly
-                                        className="w-[200px] border border-gray-300 rounded-md bg-white h-10 shadow-sm pr-[25px] pl-[25px]"
+                                        className="w-[200px] border border-gray-300 rounded-md bg-white h-10 shadow-sm p-[10px]"
                                     />
                                 </div>
                             </div>
@@ -287,11 +287,12 @@ const ClientesTable: React.FC = () => {
     }, [ruc, empresa, search]);
 
     return (
+
         <div className="space-y-6 mt-6 ml-[20px] mr-[20px]">
             {/* FILTROS - ACTUALIZADO CON ESTILO DE TICKETS */}
-            <div className="flex flex-wrap items-end gap-4 p-4 rounded-lg border border-gray-200 shadow-sm m-[10px]">
-                <div className="flex-1 min-w-[200px] max-w-[300px] m-[10px]">
-                    <p className="text-sm font-semibold">Ruc</p>
+            <div className="flex flex-wrap justify-start items-end gap-4 p-4 rounded-lg border border-gray-200 shadow-sm p-[10px] mb-[10px]">
+                <div className="min-w-[200px] max-w-[300px]">
+                    <p className="text-sm font-semibold mb-1">Ruc</p>
                     <Input
                         value={ruc}
                         onChange={(e) => setRuc(e.target.value)}
@@ -300,8 +301,8 @@ const ClientesTable: React.FC = () => {
                     />
                 </div>
 
-                <div className="flex-1 min-w-[200px] max-w-[300px] m-[10px]">
-                    <p className="text-sm font-semibold">Empresa</p>
+                <div className="min-w-[200px] max-w-[300px]">
+                    <p className="text-sm font-semibold mb-1">Empresa</p>
                     <Input
                         value={empresa}
                         onChange={(e) => setEmpresa(e.target.value)}
@@ -310,7 +311,8 @@ const ClientesTable: React.FC = () => {
                     />
                 </div>
 
-                <div className="min-w-[120px] max-w-[300px] m-[10px]">
+                <div className="min-w-[120px] max-w-[300px]">
+                    <p className="text-sm font-semibold mb-1">Buscar</p>
                     <Input
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
