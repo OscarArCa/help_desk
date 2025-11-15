@@ -6,6 +6,8 @@ import Inicio from "@/pages/Inicio"; // Asegúrate de que no tenga la extensión
 import TicketsPage from "@/pages/Tickets";
 import Chat from "@/pages/Chat.tsx";
 import Clientes from "@/pages/Clientes.tsx";
+import Inicio_inSitu from "@/pages/Inicio_inSitu.tsx";
+import Tickets_inSitu from "@/pages/Tickets_inSitu.tsx";
 // Eliminamos la importación del ícono: import {Tickets} from "lucide-react";
 
 function App() {
@@ -18,7 +20,11 @@ function App() {
 
                 <Route path="/inicio" element={<Inicio />} />
 
+                <Route path="/inicio_insitu" element={<Inicio_inSitu />} />
+
                 <Route path="/tickets" element={<TicketsPage />} />
+
+                <Route path="/tickets_insitu" element={<Tickets_inSitu />} />
 
                 <Route path="/chat" element={<Chat />} />
 

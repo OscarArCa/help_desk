@@ -1,16 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import {ArrowLeft, Send, User, MessageSquare, ExternalLink } from 'lucide-react';
+import { Send, User, MessageSquare, ExternalLink } from 'lucide-react';
 
-// --- Códigos de Color ---
 const COLOR_NARANJA = '#FFA82E';
 const COLOR_RESPUESTA_HEADER = '#E0F0FF';
 const COLOR_RESPUESTA_INPUT = '#F9F9F9';
 
-// ✅ Importamos tu Sidebar real
 import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
 
-// --- Tipado y Datos de Mensajes ---
 interface Message {
     id: number;
     sender: 'user' | 'support';
@@ -44,7 +41,6 @@ const initialMessages: Message[] = [
     },
 ];
 
-// --- Componente Base: Button ---
 interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
     className?: string;
     children: React.ReactNode;
@@ -60,7 +56,6 @@ const Button: React.FC<ButtonProps> = ({ className = '', children, ...props }) =
     </button>
 );
 
-// --- Componente 1: Detalle del Ticket ---
 const TicketDetailsPanel: React.FC = () => (
     <div className="w-[300px] bg-white flex flex-col h-auto border-[1px] border-gray-200 m-[10px] rounded-[20px] p-[10px]">
         <div className="bg-gray-50 p-4 border-b">
@@ -86,7 +81,6 @@ const TicketDetailsPanel: React.FC = () => (
     </div>
 );
 
-// --- Componente de Mensaje Individual ---
 const MessageBlock: React.FC<{ message: Message }> = ({ message }) => (
     <div className="border-[1px] p-[10px] rounded-[10px] mt-[10px]">
         <div className="flex justify-between">
@@ -110,7 +104,6 @@ const MessageBlock: React.FC<{ message: Message }> = ({ message }) => (
     </div>
 );
 
-// --- Panel de Conversación ---
 const ConversationPanel: React.FC = () => {
     const [messages, setMessages] = useState<Message[]>(initialMessages);
     const [newMessage, setNewMessage] = useState('');
@@ -148,7 +141,6 @@ const ConversationPanel: React.FC = () => {
                 <div ref={chatEndRef} />
             </div>
 
-            {/* Área de respuesta */}
             <div style={{ backgroundColor: COLOR_RESPUESTA_HEADER, marginBottom: '10px', borderRadius: '10px' }}>
                 <div className="flex justify-between px-4 py-2 border-b">
                     <h4 className="font-semibold">Responder</h4>
@@ -174,22 +166,16 @@ const ConversationPanel: React.FC = () => {
     );
 };
 
-// --- Layout del Chat ---
 const ChatLayout: React.FC = () => (
-    <div className="h-full flex flex-col p-6 gap-6">
-        <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-                <Link to="/tickets">
-                    <ArrowLeft className="w-6 h-6 cursor-pointer" />
-                </Link>
-                <h1 className="text-2xl font-bold flex items-center gap-2">
-                    <MessageSquare className="w-6 h-6" />
-                    Chat
-                </h1>
-            </div>
-        </div>
+    <div className="h-full flex flex-col p-6 gap-6 mr-[10px]">
 
-        <div className="flex flex-1 overflow-hidden">
+        <Header
+            title="Chat"
+            icon={MessageSquare}
+        />
+
+        {/* 🔥 Altura fija y no se expande */}
+        <div className="flex h-[calc(100vh-180px)] overflow-hidden">
             <TicketDetailsPanel />
             <div className="flex-1 pl-6">
                 <ConversationPanel />
@@ -198,7 +184,8 @@ const ChatLayout: React.FC = () => (
     </div>
 );
 
-// ✅ Sidebar aplicado correctamente ✅
+
+
 const Chat: React.FC = () => (
     <div className="flex min-h-screen bg-gray-50">
         <Sidebar />
